@@ -138,7 +138,5 @@ def main():
                           "VALUES (%s, %s, %s, %s, %s)", domain_id, date_check, ix, excluded_pages, searchable_pages)
 
 
-main()
-
-# if __name__ == 'main':
-#     main()
+if __name__ == 'main':
+    main()
