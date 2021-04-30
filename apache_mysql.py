@@ -14,8 +14,8 @@ class MySQLi:
                                                        user=username,
                                                        password=password,
                                                        port=port,
-                                                       sql_mode='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION',
-                                                       auth_plugin='mysql_native_password'
+                                                       # sql_mode='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION',
+                                                       # auth_plugin='mysql_native_password'
                                                        )
         except mysql.connector.Error as e:
             print("Error: Could not make a database link using " + username + "@" + hostname + ".")
@@ -32,6 +32,7 @@ class MySQLi:
 
     def fetch(self, sql, *args):
         # result = {"rows": [], "num_rows": 0}
+
         result = {"rows": []}
         cursor = self._query(sql, args)
         if cursor != None:
@@ -58,7 +59,7 @@ class MySQLi:
     def __del__(self):
         if self._connection != None and self._connection.is_connected():
             self._connection.close()
-
-
-
 #
+db = MySQLi(host, user, password, database_home)
+a = db.fetch("SELECT * FROM test")
+print(a)

@@ -75,7 +75,7 @@ def main():
             for i in col_history_in_search['history']:
                 date_webmaster = parser.parse(i['date']).date()  # дата в вебмастере
                 num_urls_index = i['value']  # количество url в индексе за дату
-
+            #
                 check_string_in_db = db.fetch("SELECT * FROM a_team_webmaster_index_date WHERE id_domain= %s"
                                               " AND date= %s",
                                               domain_id, date_webmaster)
@@ -138,5 +138,5 @@ def main():
                           "VALUES (%s, %s, %s, %s, %s)", domain_id, date_check, ix, excluded_pages, searchable_pages)
 
 
-if __name__ == 'main':
-    main()
+# if __name__ == 'main':
+main()
