@@ -1,6 +1,6 @@
 #!/usr/bin/python3.8
-
 import mysql.connector
+import mysql
 from config import *
 
 
@@ -14,11 +14,12 @@ class MySQLi:
                                                        user=username,
                                                        password=password,
                                                        port=port,
-                                                       # sql_mode='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION',
-                                                       # auth_plugin='mysql_native_password'
+                                                       sql_mode='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION',
+                                                       auth_plugin='mysql_native_password'
                                                        )
         except mysql.connector.Error as e:
-            print("Error: Could not make a database link using " + username + "@" + hostname + ".")
+            print(e)
+            # print("Error: Could not make a database link using " + username + "@" + hostname + ".")
 
     def _query(self, sql, args=None):
         cursor = None
@@ -60,6 +61,3 @@ class MySQLi:
         if self._connection != None and self._connection.is_connected():
             self._connection.close()
 #
-db = MySQLi(host, user, password, database_home)
-a = db.fetch("SELECT * FROM test")
-print(a)
